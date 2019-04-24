@@ -11,6 +11,7 @@
 
 <body>
     <script src="js/markup.js"></script>
+    <script src="js/events.js"></script>
     <script src="js/cardbuilder.js"></script>
     <script>
         const GAME = {
@@ -48,6 +49,7 @@
         window.addEventListener('DOMContentLoaded', function loaded(event) {
             window.removeEventListener('DOMContentLoaded', loaded)
             Markup.init(GAME)
+            Events.init()
             CardCreator.init()
         })
     </script>
