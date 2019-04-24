@@ -1,4 +1,0 @@
-class StatisticsBuilder {
-    build()
-    style()
-}
