@@ -2,17 +2,11 @@ Thomas Caissie, Jonathan Trivisonno
 
 Module
 ------
-Markup
-Styling
-Events
-Functions/Features
+Markup & Styling, Events, Functions/Features
 
 Markup & Styling
 ------
-Card-container
-Card
-Statistics
-Command buttons
+Card-container, Card, Statistics, Command buttons
 
 Functions & Features
 --------------------
