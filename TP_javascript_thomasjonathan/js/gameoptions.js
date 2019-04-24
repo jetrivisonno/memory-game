@@ -20,22 +20,18 @@ const GameOptions = (function (){
             return element
         }
     }
-    
     class StatisticBuilder extends Builder {
         build() {
             const container = this.createElement('div', [])
             const label = this.createElement('label', [{name: 'for', value: this.field.id}])
             const input = this.createInputElement('input', [])
             label.textContent = this.field.label
-            if(this.field.disabled) {
-                input.setAttribute('disabled', '')
-            }
+            input.disabled = true
             container.append(label)
             container.append(input)
             return container
         }
     }
-    
     class CommandBuilder extends Builder {
         build() {
             const btn = this.createInputElement('input', [])
@@ -43,9 +39,11 @@ const GameOptions = (function (){
             return btn
         }
     }
+    function frame() {}
+    function build() {}
     return {
         init: function() {
-            //
+            console.log('hello')
         }
     }
 })()

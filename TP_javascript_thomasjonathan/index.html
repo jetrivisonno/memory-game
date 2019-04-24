@@ -10,12 +10,39 @@
 </head>
 
 <body>
-    <script src="js/builder.js"></script>
     <script src="js/gameoptions.js"></script>
     <script>
+        const GAME = {
+            statsFields: [{
+                id: 'score',
+                label: 'score',
+                type: 'number',
+                value: 0,
+            },
+            {
+                id: 'timer',
+                label: 'timer',
+                type: 'number',
+                value: 0,
+            }],
+            commandBtns: [{
+                id: 'game_loop',
+                type: 'submit',
+                value: 'start'
+            },
+            {
+                id: 'quit',
+                type: 'submit',
+                value: 'quit'
+            }]
+        }
+
+        console.log(GAME.statsFields)
+        console.log(GAME.commandBtns)
+
+
         window.addEventListener('DOMContentLoaded', function loaded(event) {
-            //
-            window.removeEventListener('DOMContentLoaded', loaded())
+            window.removeEventListener('DOMContentLoaded', loaded)
             GameOptions.init()
         })
     </script>
