@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const Markup = (function () {
     'use strict'
     class Builder {
@@ -47,10 +48,14 @@ const Markup = (function () {
         const container = new Builder().createElement('div', [{ name: 'id', value: 'gameOptionsWrapper' }])
         const statWrapper = new Builder().createElement('div', [{ name: 'id', value: 'statWrapper' }])
         const btnWrapper = new Builder().createElement('div', [{ name: 'id', value: 'btnWrapper' }])
-        const cardWrapper = new Builder().createElement('div', [{ name: 'id', value: 'cardWrapper' }])
+
         container.append(statWrapper)
         container.append(btnWrapper)
         return container
+    }
+    function cardWrapper () {
+        const cardWrapper = new Builder().createElement('div', [{ name: 'id', value: 'cardWrapper' }])
+        return cardWrapper
     }
     function build (GAME) {
         const statWrapper = document.getElementById('statWrapper')
@@ -66,61 +71,63 @@ const Markup = (function () {
     }
 
     class Card {
-        const PAIR = 2
-        const NUMBER_OF_PAIRS = 9
+        shuffleArray (cardArray) {
+            let m = cardArray.length
+            let t
+            let i
 
-     createCardArray() {
-        let cardArray = []
+            // While there remain elements to shuffle…
+            while (m) {
+                // Pick a remaining element…
+                i = Math.floor(Math.random() * m--)
 
-        for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
-            for (let k = 0; k < PAIR; k++) {
-                let cardDiv = document.createElement('div')
-                let cardImg = document.createElement('img')
-
-                cardImg.src = 'images/' + i + '.jpeg'
-
-                cardDiv.appendChild(cardImg)
-                cardDiv.classList.add('card')
-                cardArray.push(cardDiv)
+                // And swap it with the current element.
+                t = cardArray[m]
+                cardArray[m] = cardArray[i]
+                cardArray[i] = t
             }
         }
 
-        shuffleArray(cardArray)
+        createCardArray () {
+            const PAIR = 2
+            const NUMBER_OF_PAIRS = 9
 
-        return cardArray
-    }
+            let cardArray = []
 
-     shuffleArray(cardArray) {
-        let m = cardArray.length
-        let t
-        let i
+            for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
+                for (let k = 0; k < PAIR; k++) {
+                    let cardDiv = document.createElement('div')
+                    let cardImg = document.createElement('img')
 
-        // While there remain elements to shuffle…
-        while (m) {
-            // Pick a remaining element…
-            i = Math.floor(Math.random() * m--);
+                    cardImg.src = 'images/' + i + '.jpeg'
 
-            // And swap it with the current element.
-            t = cardArray[m];
-            cardArray[m] = cardArray[i];
-            cardArray[i] = t;
+                    cardDiv.appendChild(cardImg)
+                    cardDiv.classList.add('card')
+                    cardArray.push(cardDiv)
+                }
+            }
+
+            this.shuffleArray(cardArray)
+
+            return cardArray
         }
-    }
 
-     cardGenerator() {
-        const cardsContainer = document.getElementById('cardWrapper')
-        const cardArray = createCardArray()
+        cardGenerator () {
+            const cardsContainer = document.getElementById('cardWrapper')
+            const cardArray = this.createCardArray()
 
-        for (let i = 0; i < cardArray.length; i++) {
-            cardsContainer.appendChild(cardArray[i])
+            for (let i = 0; i < cardArray.length; i++) {
+                cardsContainer.appendChild(cardArray[i])
+            }
         }
-    }
     }
 
     return {
         init: function (GAME) {
             const wrap = wrapper()
             const container = frame()
+            const cardContainer = cardWrapper()
+            wrap.append(cardContainer)
             wrap.append(container)
             document.body.append(wrap)
             Card.cardGenerator()
