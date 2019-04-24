@@ -49,12 +49,22 @@ const GameOptions = (function (){
         container.append(cardWrapper)
         return container
     }
-    function build() {}
+    function build(GAME) {
+        const statWrapper = document.getElementById('statWrapper')
+        const btnWrapper = document.getElementById('btnWrapper')
+        for(const stat in GAME.statsFields) {
+            const row = new StatisticBuilder(GAME.statsFields[stat])
+            statWrapper.append(row.build())
+        }
+        for(const button in GAME.commandBtns) {
+            const btn = new CommandBuilder(GAME.commandBtns[button])
+            btnWrapper.append(btn.build())
+        }
+    }
     return {
         init: function(GAME) {
             document.body.append(frame())
-            const statWrapper = document.getElementById('statWrapper')
-            const btnWrapper = document.getElementById('btnWrapper')
+            build(GAME)
         }
     }
 })()
