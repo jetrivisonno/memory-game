@@ -1,4 +1,4 @@
-const CardBuilder = (function () {
+const CardCreator = (function () {
     'use strict'
 
     const PAIR = 2
@@ -8,21 +8,19 @@ const CardBuilder = (function () {
         let cardArray = []
 
         for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
-            let counter = 0
             for (let k = 0; k < PAIR; k++) {
-                let cardDiv = createElement('div')
-                let cardImg = createElement('img')
+                let cardDiv = document.createElement('div')
+                let cardImg = document.createElement('img')
 
-                cardImg.src = '../images/' + i + '.jpeg'
+                cardImg.src = 'images/' + i + '.jpeg'
                 
                 cardDiv.appendChild(cardImg)
                 cardDiv.classList.add('card')
                 cardArray.push(cardDiv)
-                
-                counter++
             }
         }
-
+        console.log(cardArray);
+        
         shuffleArray(cardArray)
 
         return cardArray
@@ -39,12 +37,10 @@ const CardBuilder = (function () {
             i = Math.floor(Math.random() * m--);
           
             // And swap it with the current element.
-            t = array[m];
-            array[m] = array[i];
-            array[i] = t;
+            t = cardArray[m];
+            cardArray[m] = cardArray[i];
+            cardArray[i] = t;
         }
-          
-        return array;
     }
 
     function cardGenerator() {
