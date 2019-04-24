@@ -10,3 +10,14 @@ class Builder {
         return element
     }
 }
+
+class StatisticBuilder extends Builder {
+    build() {
+        const container = this.createElement('div', [])
+        const label = this.createElement('label', [{name:'for', value:this.field.id}])
+        const input = this.createElement('input', this.field)
+        container.append(label)
+        container.append(input)
+        return container
+    }
+}
