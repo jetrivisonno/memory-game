@@ -11,6 +11,7 @@
 
 <body>
     <script src="js/gameoptions.js"></script>
+    <script src="js/cardbuilder.js"></script>
     <script>
         const GAME = {
             statsFields: [{
@@ -43,10 +44,14 @@
             }]
         }
 
+        console.log(GAME.statsFields)
+        console.log(GAME.commandBtns)
+
 
         window.addEventListener('DOMContentLoaded', function loaded(event) {
             window.removeEventListener('DOMContentLoaded', loaded)
             GameOptions.init(GAME)
+            CardCreator.init()
         })
     </script>
 </body>
