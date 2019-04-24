@@ -39,11 +39,20 @@ const GameOptions = (function (){
             return btn
         }
     }
-    function frame() {}
+    function frame() {
+        const container = new Builder().createElement('div', [{name:'id', value:'gameOptionsWrapper'}])
+        const statWrapper = new Builder().createElement('div', [{name:'id', value:'statWrapper'}])
+        const btnWrapper = new Builder().createElement('div', [{name:'id', value:'btnWrapper'}])
+        container.append(statWrapper)
+        container.append(btnWrapper)
+        return container
+    }
     function build() {}
     return {
-        init: function() {
-            console.log('hello')
+        init: function(GAME) {
+            document.body.append(frame())
+            const statWrapper = document.getElementById('statWrapper')
+            const btnWrapper = document.getElementById('btnWrapper')
         }
     }
 })()
