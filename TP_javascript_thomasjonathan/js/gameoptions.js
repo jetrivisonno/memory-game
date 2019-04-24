@@ -43,10 +43,8 @@ const GameOptions = (function (){
         const container = new Builder().createElement('div', [{name:'id', value:'gameOptionsWrapper'}])
         const statWrapper = new Builder().createElement('div', [{name:'id', value:'statWrapper'}])
         const btnWrapper = new Builder().createElement('div', [{name:'id', value:'btnWrapper'}])
-        const cardWrapper = new Builder().createElement('div', [{name:'id', value:'cardWrapper'}])
         container.append(statWrapper)
         container.append(btnWrapper)
-        container.append(cardWrapper)
         return container
     }
     function build(GAME) {
