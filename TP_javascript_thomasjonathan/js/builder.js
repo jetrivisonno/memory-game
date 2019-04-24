@@ -21,3 +21,14 @@ class StatisticBuilder extends Builder {
         return container
     }
 }
+
+class CommandBuilder extends Builder {
+    build() {
+        const container = this.createElement('div', [])
+        this.field.forEach(function(option) {
+            const btn = this.createElement('input', option)
+            container.append(btn)
+        })
+        return container
+    }
+}
