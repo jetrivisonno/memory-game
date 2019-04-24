@@ -2,24 +2,23 @@ const CardBuilder = (function () {
     'use strict'
 
     const PAIR = 2
-    const CARDS = {
-        id: 'cards-container',
-        imageName: []
-    }
+    const NUMBER_OF_PAIRS = 9
 
-    function getCardsContainer(CARDS) {
-        return document.getElementById(CARDS.id)
-    }
-
-    function createCardArray(CARDS) {
+    function createCardArray() {
         let cardArray = []
 
-        for (let i = 0; i < CARDS.imageName.length; i++) {
+        for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
             let counter = 0
             for (let k = 0; k < PAIR; k++) {
-                let card = createElement('img')
-                card.src = counter + '.jpg'
-                cardArray[counter] = card
+                let cardDiv = createElement('div')
+                let cardImg = createElement('img')
+
+                cardImg.src = '../images/' + i + '.jpeg'
+                
+                cardDiv.appendChild(cardImg)
+                cardDiv.classList.add('card')
+                cardArray.push(cardDiv)
+                
                 counter++ 
             }
         }
@@ -48,9 +47,9 @@ const CardBuilder = (function () {
         return array;
     }
 
-    function cardGenerator(CARDS) {
-        const cardsContainer = getCardsContainer(CARDS)
-        const cardArray = createCardArray(CARDS)
+    function cardGenerator() {
+        const cardsContainer = document.getElementById('cards-container')
+        const cardArray = createCardArray()
 
         for (let i = 0; i < cardArray.length; i++) {
             cardsContainer.appendChild(cardArray[i])
@@ -58,8 +57,8 @@ const CardBuilder = (function () {
     }
 
     return {
-        init: function (CARDS) {
-            cardGenerator(CARDS)
+        init: function () {
+            cardGenerator()
         }
     }
 }
