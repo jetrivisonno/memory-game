@@ -4,9 +4,17 @@ class Builder {
     }
     createElement(tagName, attributes) {
         const element = document.createElement(tagName)
-        attributes.forEach(function(attribute){
-            element.setAttribute(attribute.name, attribute.value)
-        })
+        for(const att in attributes) {
+            element.setAttribute(attributes[att].name, attributes[att].value)
+        }
+        return element
+    }
+    createInputElement(tagName, attributes) {
+        const element = this.createElement(tagName, attributes)
+        element.setAttribute('id', this.field.id)
+        element.setAttribute('type', this.field.type)
+        element.setAttribute('name', this.field.id)
+        element.setAttribute('value', this.field.value)
         return element
     }
 }
@@ -14,8 +22,12 @@ class Builder {
 class StatisticBuilder extends Builder {
     build() {
         const container = this.createElement('div', [])
-        const label = this.createElement('label', [{name:'for', value:this.field.id}])
-        const input = this.createElement('input', this.field)
+        const label = this.createElement('label', [{name: 'for', value: this.field.id}])
+        const input = this.createInputElement('input', [])
+        label.textContent = this.field.label
+        if(this.field.disabled) {
+            input.setAttribute('disabled', '')
+        }
         container.append(label)
         container.append(input)
         return container
@@ -24,11 +36,44 @@ class StatisticBuilder extends Builder {
 
 class CommandBuilder extends Builder {
     build() {
-        const container = this.createElement('div', [])
-        this.field.forEach(function(option) {
-            const btn = this.createElement('input', option)
-            container.append(btn)
-        })
-        return container
+        const btn = this.createInputElement('input', [])
+        btn.removeAttribute('name')
+        return btn
     }
+}
+
+const jsonstatistics = [{
+    id:'score',
+    label:'score',
+    type: 'number',
+    value:0,
+    disabled:true
+},
+{
+    id:'timer',
+    label:'timer',
+    type: 'number',
+    value:0,
+    disabled:true
+}]
+
+const jsoncommandbtns = [{
+    id:'game_loop',
+    type:'submit',
+    value:'start'
+},
+{
+    id:'quit',
+    type:'submit',
+    value:'quit'
+}]
+
+for(const field in jsonstatistics) {
+    const row = new StatisticBuilder(jsonstatistics[field])
+    document.body.append(row.build())
+}
+
+for(const field in jsoncommandbtns) {
+    const btn = new CommandBuilder(jsoncommandbtns[field])
+    document.body.append(btn.build())
 }

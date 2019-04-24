@@ -10,8 +10,14 @@
 </head>
 
 <body>
+    <script src="js/builder.js"></script>
+    <script src="js/gameoptions.js"></script>
     <script>
-        window.addEventListener('DOMContentLoaded', loaded())
+        window.addEventListener('DOMContentLoaded', function loaded(event) {
+            //
+            window.removeEventListener('DOMContentLoaded', loaded())
+            GameOptions.init()
+        })
     </script>
 </body>
 
