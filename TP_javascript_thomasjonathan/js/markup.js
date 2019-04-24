@@ -1,4 +1,4 @@
-const GameOptions = (function (){
+const Markup = (function (){
     'use strict'
     class Builder {
         constructor(field) {
@@ -39,6 +39,10 @@ const GameOptions = (function (){
             return btn
         }
     }
+    function wrapper() {
+        const container = new Builder().createElement('div', [{name:'wrapper', value:'wrapper'}])
+        return container
+    }
     function frame() {
         const container = new Builder().createElement('div', [{name:'id', value:'gameOptionsWrapper'}])
         const statWrapper = new Builder().createElement('div', [{name:'id', value:'statWrapper'}])
@@ -61,7 +65,10 @@ const GameOptions = (function (){
     }
     return {
         init: function(GAME) {
-            document.body.append(frame())
+            const wrap = wrapper()
+            const container = frame()
+            wrap.append(container)
+            document.body.append(wrap)
             build(GAME)
         }
     }
