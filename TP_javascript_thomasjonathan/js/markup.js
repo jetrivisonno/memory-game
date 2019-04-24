@@ -1,17 +1,17 @@
-const Markup = (function (){
+const Markup = (function () {
     'use strict'
     class Builder {
-        constructor(field) {
+        constructor (field) {
             this.field = field
         }
-        createElement(tagName, attributes) {
+        createElement (tagName, attributes) {
             const element = document.createElement(tagName)
-            for(const att in attributes) {
+            for (const att in attributes) {
                 element.setAttribute(attributes[att].name, attributes[att].value)
             }
             return element
         }
-        createInputElement(tagName, attributes) {
+        createInputElement (tagName, attributes) {
             const element = this.createElement(tagName, attributes)
             element.setAttribute('id', this.field.id)
             element.setAttribute('type', this.field.type)
@@ -21,9 +21,9 @@ const Markup = (function (){
         }
     }
     class StatisticBuilder extends Builder {
-        build() {
+        build () {
             const container = this.createElement('div', [])
-            const label = this.createElement('label', [{name: 'for', value: this.field.id}])
+            const label = this.createElement('label', [{ name: 'for', value: this.field.id }])
             const input = this.createInputElement('input', [])
             label.textContent = this.field.label
             input.disabled = true
@@ -33,38 +33,39 @@ const Markup = (function (){
         }
     }
     class CommandBuilder extends Builder {
-        build() {
+        build () {
             const btn = this.createInputElement('input', [])
             btn.removeAttribute('name')
             return btn
         }
     }
-    function wrapper() {
-        const container = new Builder().createElement('div', [{name:'wrapper', value:'wrapper'}])
+    function wrapper () {
+        const container = new Builder().createElement('div', [{ name: 'wrapper', value: 'wrapper' }])
         return container
     }
-    function frame() {
-        const container = new Builder().createElement('div', [{name:'id', value:'gameOptionsWrapper'}])
-        const statWrapper = new Builder().createElement('div', [{name:'id', value:'statWrapper'}])
-        const btnWrapper = new Builder().createElement('div', [{name:'id', value:'btnWrapper'}])
+    function frame () {
+        const container = new Builder().createElement('div', [{ name: 'id', value: 'gameOptionsWrapper' }])
+        const statWrapper = new Builder().createElement('div', [{ name: 'id', value: 'statWrapper' }])
+        const btnWrapper = new Builder().createElement('div', [{ name: 'id', value: 'btnWrapper' }])
+        const cardWrapper = new Builder().createElement('div', [{ name: 'id', value: 'cardWrapper' }])
         container.append(statWrapper)
         container.append(btnWrapper)
         return container
     }
-    function build(GAME) {
+    function build (GAME) {
         const statWrapper = document.getElementById('statWrapper')
         const btnWrapper = document.getElementById('btnWrapper')
-        for(const stat in GAME.statsFields) {
+        for (const stat in GAME.statsFields) {
             const row = new StatisticBuilder(GAME.statsFields[stat])
             statWrapper.append(row.build())
         }
-        for(const button in GAME.commandBtns) {
+        for (const button in GAME.commandBtns) {
             const btn = new CommandBuilder(GAME.commandBtns[button])
             btnWrapper.append(btn.build())
         }
     }
 
-    class     Card {
+    class Card {
         const PAIR = 2
         const NUMBER_OF_PAIRS = 9
 
@@ -77,13 +78,13 @@ const Markup = (function (){
                 let cardImg = document.createElement('img')
 
                 cardImg.src = 'images/' + i + '.jpeg'
-                
+
                 cardDiv.appendChild(cardImg)
                 cardDiv.classList.add('card')
                 cardArray.push(cardDiv)
             }
         }
-        
+
         shuffleArray(cardArray)
 
         return cardArray
@@ -93,12 +94,12 @@ const Markup = (function (){
         let m = cardArray.length
         let t
         let i
-          
+
         // While there remain elements to shuffle…
         while (m) {
             // Pick a remaining element…
             i = Math.floor(Math.random() * m--);
-          
+
             // And swap it with the current element.
             t = cardArray[m];
             cardArray[m] = cardArray[i];
@@ -115,9 +116,9 @@ const Markup = (function (){
         }
     }
     }
-    
+
     return {
-        init: function(GAME) {
+        init: function (GAME) {
             const wrap = wrapper()
             const container = frame()
             wrap.append(container)
