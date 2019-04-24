@@ -19,7 +19,7 @@ const CardBuilder = (function () {
                 cardDiv.classList.add('card')
                 cardArray.push(cardDiv)
                 
-                counter++ 
+                counter++
             }
         }
 
@@ -48,7 +48,7 @@ const CardBuilder = (function () {
     }
 
     function cardGenerator() {
-        const cardsContainer = document.getElementById('cards-container')
+        const cardsContainer = document.getElementById('cardWrapper')
         const cardArray = createCardArray()
 
         for (let i = 0; i < cardArray.length; i++) {
