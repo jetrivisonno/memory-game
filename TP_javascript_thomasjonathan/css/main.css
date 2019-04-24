@@ -6,4 +6,77 @@
 
 body {
     width: 100vw;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+/* game options */
+
+#gameOptionsWrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+}
+
+#gameOptionsWrapper > div {
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+#statWrapper, #btnWrapper {
+    display: inherit;
+    border: 1px solid #333;
+}
+
+/* stats wrapper */
+
+#statWrapper {
+    flex-direction: inherit;
+}
+
+#statWrapper > div {
+    margin: 1rem auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#statWrapper > div label, #statWrapper > div input {
+    width: 100%;
+}
+
+#statWrapper > div label {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#statWrapper > div input {
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: transparent;
+    border: none;
+}
+
+/* btn wrapper */
+
+#btnWrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#btnWrapper input {
+    margin: 1rem auto;
+    padding: 0.2rem;
+    width: 30%;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+/* card container */
+
+/* card */
