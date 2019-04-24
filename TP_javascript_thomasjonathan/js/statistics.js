@@ -1,0 +1,4 @@
+class StatisticsBuilder {
+    build()
+    style()
+}
