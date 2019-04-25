@@ -65,6 +65,7 @@ const Events = (function () {
         path = target.src
         detachEventListener('cardContainer', 'click', flip)
         detachEventListener('cardContainer', 'click', compareCards)
+        target.classList.toggle('flipper')
         setTimeout(function () {
             if (discovered) {
                 // keep cards discovered
@@ -110,6 +111,7 @@ const Events = (function () {
             })
             attachEventListener('gameOn', 'click', start)
             attachEventListener('gameLoop', 'click', pause)
+            attachEventListener('cardWrapper', 'click', flip)
         }
     }
 })()
