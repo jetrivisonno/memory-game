@@ -19,7 +19,6 @@ const CardCreator = (function () {
                 cardArray.push(cardDiv)
             }
         }
-        console.log(cardArray);
         
         shuffleArray(cardArray)
 
