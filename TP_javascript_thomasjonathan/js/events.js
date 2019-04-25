@@ -1,16 +1,26 @@
 const Events = (function () {
+    let gameOn = false
     let gameLoop = false
 
     function start () {
         detachEventListener('gameLoop', 'click', start)
-        attachEventListener('gameLoop', 'click', stop)
+        attachEventListener('gameLoop', 'click', pause)
+        gameOn = true
         gameLoop = true
         timer()
     }
-    function stop () {
-        detachEventListener('gameLoop', 'click', stop)
+    function pause () {
+        detachEventListener('gameLoop', 'click', pause)
         attachEventListener('gameLoop', 'click', start)
         gameLoop = false
+    }
+    function stop () {
+        detachEventListener('gameLoop', 'click', stop)
+        detachEventListener('gameLoop', 'click', pause)
+        attachEventListener('gameLoop', 'click', start)
+        gameOn = false
+        gameLoop = false
+        // compare best time completion
     }
     // the timer function looks dirty!!!
     function timer () {
