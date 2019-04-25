@@ -1,6 +1,9 @@
 const Events = (function () {
     let gameOn = false
     let gameLoop = false
+    let bestTime = 0
+    let discovered = false
+    let path = null
 
     function start (event) {
         detachEventListener('gameOn', 'click', start)
@@ -17,9 +20,13 @@ const Events = (function () {
         gameOn = false
         gameLoop = false
         const target = event.target
+        const pauseBtn = document.getElementById('gameLoop')
+        const completedIn = document.getElementById('timer').value
         target.value = 'start game'
-        // compare best time completion
-        // store timer value in a variable and reset timer to 0
+        pauseBtn.value = 'pause game'
+        reset()
+        compareTime(completedIn)
+        alert('You completed the game in ' + completedIn + ' seconds')
     }
     function pause (event) {
         if (gameOn && gameLoop) {
@@ -42,7 +49,6 @@ const Events = (function () {
             timer()
         }
     }
-    // the timer function looks dirty!!!
     function timer () {
         if (gameLoop) {
             setTimeout(function () {
@@ -53,6 +59,41 @@ const Events = (function () {
                 timer()
             }, 1000)
         }
+    }
+    function flip (event) {
+        const target = event.target
+        path = target.src
+        detachEventListener('cardContainer', 'click', flip)
+        detachEventListener('cardContainer', 'click', compareCards)
+        setTimeout(function () {
+            if (discovered) {
+                // keep cards discovered
+            } else {
+                // reset cards
+            }
+        }, 5000)
+    }
+    function compareCards (event) {
+        const target = event.target
+        if (path === target.src) {
+            discovered = true
+        } else {
+            // reset cards
+        }
+        // check if there is any more cards to discover
+    }
+    function compareTime (time) {
+        if (time > bestTime) {
+            bestTime = time
+            const element = document.getElementById('bestTime')
+            element.value = time
+        }
+    }
+    function reset () {
+        const timer = document.getElementById('timer')
+        const tries = document.getElementById('tries')
+        timer.value = 0
+        tries.value = 0
     }
     function attachEventListener (id, event, feature) {
         const element = document.getElementById(id)
