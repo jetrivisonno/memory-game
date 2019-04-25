@@ -79,20 +79,54 @@ body {
 
 /* card container */
 #cardWrapper {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
     border: solid black 1px;
-    padding: 1em;
-    margin-bottom: 1em;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* card */
-.card {
-    height: 165px;
-    width: 250px;
-}
-
-.card > img {
+img {
     height: 100%;
     width: 100%;
+}
+
+/* entire container, keeps perspective */
+.card {
+    perspective: 1000px;
+}
+
+.card, .front, .back {
+	width: 200px;
+	height: 132px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
 }
