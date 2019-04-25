@@ -96,6 +96,7 @@ const Markup = (function () {
             for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
                 for (let k = 0; k < PAIR; k++) {
                     const cardContainer = document.createElement('div')
+                    const cardFlipper = document.createElement('div')
                     const cardFront = document.createElement('div')
                     const cardBack = document.createElement('div')
                     const cardImg = document.createElement('img')
@@ -103,12 +104,14 @@ const Markup = (function () {
                     cardImg.src = 'images/' + i + '.jpeg'
 
                     cardContainer.classList.add('card')
+                    cardFlipper.classList.add('flipper')
                     cardFront.classList.add('front')
                     cardBack.classList.add('back')
 
                     cardBack.append(cardImg)
-                    cardContainer.append(cardFront)
-                    cardContainer.append(cardBack)
+                    cardFlipper.append(cardFront)
+                    cardFlipper.append(cardBack)
+                    cardContainer.append(cardFlipper)
 
                     cardArray.push(cardContainer)
                 }

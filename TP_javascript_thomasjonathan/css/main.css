@@ -130,3 +130,11 @@ img {
 .back {
 	transform: rotateY(180deg);
 }
+
+.card.flip .flipper {
+	transform: rotateY(180deg);
+}
+
+.card.hover .flipper {
+    transform: rotateY(180deg);
+}

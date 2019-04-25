@@ -62,10 +62,11 @@ const Events = (function () {
     }
     function flip (event) {
         const target = event.target
-        path = target.src
+        path = target.nextSibling.firstChild.src
+        console.log(path)
         detachEventListener('cardWrapper', 'click', flip)
         detachEventListener('cardWrapper', 'click', compareCards)
-        target.classList.toggle('flipper')
+        target.parentNode.parentNode.classList.toggle('flip')
         setTimeout(function () {
             if (discovered) {
                 // keep cards discovered
@@ -104,6 +105,12 @@ const Events = (function () {
         const element = document.getElementById(id)
         element.removeEventListener(event, feature)
     }
+    function attachEventListenerArray (id, event, feature) {
+        const elementArray = document.getElementsByClassName(id)
+        for (let i = 0; i < elementArray.length; i++) {
+            elementArray[i].addEventListener(event, feature)
+        }
+    }
     return {
         init: function () {
             attachEventListener('quit', 'click', function () {
@@ -111,7 +118,7 @@ const Events = (function () {
             })
             attachEventListener('gameOn', 'click', start)
             attachEventListener('gameLoop', 'click', pause)
-            attachEventListener('cardWrapper', 'click', flip)
+            attachEventListenerArray('card', 'click', flip)
         }
     }
 })()
