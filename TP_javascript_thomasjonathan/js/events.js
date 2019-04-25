@@ -63,8 +63,8 @@ const Events = (function () {
     function flip (event) {
         const target = event.target
         path = target.src
-        detachEventListener('cardContainer', 'click', flip)
-        detachEventListener('cardContainer', 'click', compareCards)
+        detachEventListener('cardWrapper', 'click', flip)
+        detachEventListener('cardWrapper', 'click', compareCards)
         target.classList.toggle('flipper')
         setTimeout(function () {
             if (discovered) {
