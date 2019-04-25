@@ -48,7 +48,6 @@ const Markup = (function () {
         const container = new Builder().createElement('div', [{ name: 'id', value: 'gameOptionsWrapper' }])
         const statWrapper = new Builder().createElement('div', [{ name: 'id', value: 'statWrapper' }])
         const btnWrapper = new Builder().createElement('div', [{ name: 'id', value: 'btnWrapper' }])
-
         container.append(statWrapper)
         container.append(btnWrapper)
         return container
@@ -69,7 +68,6 @@ const Markup = (function () {
             btnWrapper.append(btn.build())
         }
     }
-
     class Card {
         shuffleArray (cardArray) {
             let m = cardArray.length
