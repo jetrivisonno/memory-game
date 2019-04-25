@@ -68,7 +68,12 @@ const Markup = (function () {
             btnWrapper.append(btn.build())
         }
     }
+<<<<<<< HEAD
+
+    class Cards {
+=======
     class Card {
+>>>>>>> b8a144389fd076f271caa655b19d1397909c9a4e
         shuffleArray (cardArray) {
             let m = cardArray.length
             let t
