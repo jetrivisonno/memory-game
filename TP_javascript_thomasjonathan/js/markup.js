@@ -70,7 +70,7 @@ const Markup = (function () {
         }
     }
 
-    class Card {
+    class Cards {
         shuffleArray (cardArray) {
             let m = cardArray.length
             let t
@@ -130,7 +130,8 @@ const Markup = (function () {
             wrap.append(cardContainer)
             wrap.append(container)
             document.body.append(wrap)
-            Card.cardGenerator()
+            let cards = new Cards()
+            cards.cardGenerator()
             build(GAME)
         }
     }
