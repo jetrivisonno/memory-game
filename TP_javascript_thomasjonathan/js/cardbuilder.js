@@ -1,4 +1,4 @@
-const CardCreator = (function () {
+/* const CardCreator = (function () {
     'use strict'
 
     const PAIR = 2
@@ -13,13 +13,13 @@ const CardCreator = (function () {
                 let cardImg = document.createElement('img')
 
                 cardImg.src = 'images/' + i + '.jpeg'
-                
+
                 cardDiv.appendChild(cardImg)
                 cardDiv.classList.add('card')
                 cardArray.push(cardDiv)
             }
         }
-        
+
         shuffleArray(cardArray)
 
         return cardArray
@@ -29,12 +29,12 @@ const CardCreator = (function () {
         let m = cardArray.length
         let t
         let i
-          
+
         // While there remain elements to shuffle…
         while (m) {
             // Pick a remaining element…
             i = Math.floor(Math.random() * m--);
-          
+
             // And swap it with the current element.
             t = cardArray[m];
             cardArray[m] = cardArray[i];
@@ -57,4 +57,4 @@ const CardCreator = (function () {
         }
     }
 }
-)()
+)() */
