@@ -68,8 +68,12 @@ const Markup = (function () {
             btnWrapper.append(btn.build())
         }
     }
+<<<<<<< HEAD
 
     class Cards {
+=======
+    class Card {
+>>>>>>> b8a144389fd076f271caa655b19d1397909c9a4e
         shuffleArray (cardArray) {
             let m = cardArray.length
             let t
@@ -129,8 +133,8 @@ const Markup = (function () {
             wrap.append(cardContainer)
             wrap.append(container)
             document.body.append(wrap)
-            let cards = new Cards()
-            cards.cardGenerator()
+            // let cards = new Cards()
+            // cards.cardGenerator()
             build(GAME)
         }
     }

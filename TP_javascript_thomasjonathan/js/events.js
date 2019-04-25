@@ -1,16 +1,46 @@
 const Events = (function () {
+    let gameOn = false
     let gameLoop = false
 
-    function start () {
-        detachEventListener('gameLoop', 'click', start)
-        attachEventListener('gameLoop', 'click', stop)
+    function start (event) {
+        detachEventListener('gameOn', 'click', start)
+        attachEventListener('gameOn', 'click', stop)
+        gameOn = true
         gameLoop = true
+        const target = event.target
+        target.value = 'end game'
         timer()
     }
-    function stop () {
-        detachEventListener('gameLoop', 'click', stop)
-        attachEventListener('gameLoop', 'click', start)
+    function stop (event) {
+        detachEventListener('gameOn', 'click', stop)
+        attachEventListener('gameOn', 'click', start)
+        gameOn = false
         gameLoop = false
+        const target = event.target
+        target.value = 'start game'
+        // compare best time completion
+        // store timer value in a variable and reset timer to 0
+    }
+    function pause (event) {
+        if (gameOn && gameLoop) {
+            detachEventListener('gameLoop', 'click', pause)
+            attachEventListener('gameLoop', 'click', unpause)
+            gameLoop = false
+            const target = event.target
+            target.value = 'unpause game'
+        } else {
+            alert("Can't pause the game in its current state")
+        }
+    }
+    function unpause () {
+        if (gameOn && !gameLoop) {
+            detachEventListener('gameLoop', 'click', unpause)
+            attachEventListener('gameLoop', 'click', pause)
+            gameLoop = true
+            const target = event.target
+            target.value = 'pause game'
+            timer()
+        }
     }
     // the timer function looks dirty!!!
     function timer () {
@@ -37,7 +67,8 @@ const Events = (function () {
             attachEventListener('quit', 'click', function () {
                 window.close()
             })
-            attachEventListener('gameLoop', 'click', start)
+            attachEventListener('gameOn', 'click', start)
+            attachEventListener('gameLoop', 'click', pause)
         }
     }
 })()
