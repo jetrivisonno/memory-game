@@ -1,9 +1,15 @@
 const Events = (function () {
+    const MAX_CARDS_FLIPPED = 2
+    const MAX_MATCHES = 9
     let gameOn = false
     let gameLoop = false
     let bestTime = 0
     let discovered = false
-    let path = null
+    let pathFirstImg = null
+    let flippedCards = 0
+    let flipDiv1 = null
+    let flipDiv2 = null
+    let cardsMatched = 0
 
     function start (event) {
         detachEventListener('gameOn', 'click', start)
@@ -60,27 +66,42 @@ const Events = (function () {
             }, 1000)
         }
     }
+    function flipToggle (element) {
+        element.classList.toggle('flip')
+        console.log('hello')
+    }
     function flip (event) {
         const target = event.target
-        path = target.nextSibling.firstChild.src
-        console.log(path)
-        detachEventListener('cardWrapper', 'click', flip)
-        detachEventListener('cardWrapper', 'click', compareCards)
-        target.parentNode.parentNode.classList.toggle('flip')
-        setTimeout(function () {
-            if (discovered) {
-                // keep cards discovered
-            } else {
-                // reset cards
-            }
-        }, 5000)
+        flippedCards++
+        if (flippedCards < MAX_CARDS_FLIPPED) {
+            flipDiv1 = target.parentNode.parentNode
+            flipToggle(flipDiv1)
+            // flipDiv1.parentNode.removeEventListener('click', flip)
+            pathFirstImg = target.nextSibling.firstChild.src
+        } else {
+            flipDiv2 = target.parentNode.parentNode
+            flipToggle(flipDiv2)
+            flipDiv2.parentNode.removeEventListener('click', flip)
+            compareCards(event)
+            flippedCards = 0
+        }
+
+        if (discovered) {
+            // keep cards discovered
+            cardsMatched++
+        } else {
+            setTimeout(function () {
+                flipToggle(flipDiv1)
+                flipDiv1.parentNode.addEventListener('click', flip)
+                flipToggle(flipDiv2)
+                flipDiv2.parentNode.addEventListener('click', flip)
+            }, 3000)
+        }
     }
     function compareCards (event) {
         const target = event.target
-        if (path === target.src) {
+        if (pathFirstImg === target.nextSibling.firstChild.src) {
             discovered = true
-        } else {
-            // reset cards
         }
         // check if there is any more cards to discover
     }
@@ -105,8 +126,8 @@ const Events = (function () {
         const element = document.getElementById(id)
         element.removeEventListener(event, feature)
     }
-    function attachEventListenerArray (id, event, feature) {
-        const elementArray = document.getElementsByClassName(id)
+    function attachEventListenerArray (reference, event, feature) {
+        const elementArray = document.getElementsByClassName(reference)
         for (let i = 0; i < elementArray.length; i++) {
             elementArray[i].addEventListener(event, feature)
         }
