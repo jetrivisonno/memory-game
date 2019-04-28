@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 const Events = (function () {
     const MAX_CARDS_FLIPPED = 2
-    const MAX_MATCHES = 9
+    const MAX_MATCHES = 8
     let gameOn = false
     let gameLoop = false
     let bestTime = 0
