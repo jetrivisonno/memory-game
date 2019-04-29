@@ -41,7 +41,7 @@ const Markup = (function () {
         }
     }
     function wrapper () {
-        const container = new Builder().createElement('div', [{ name: 'wrapper', value: 'wrapper' }])
+        const container = new Builder().createElement('div', [{ name: 'id', value: 'wrapper' }])
         return container
     }
     function frame () {
@@ -69,69 +69,6 @@ const Markup = (function () {
         }
     }
 
-    class Cards {
-        shuffleArray (cardArray) {
-            let m = cardArray.length
-            let t
-            let i
-
-            // While there remain elements to shuffle…
-            while (m) {
-                // Pick a remaining element…
-                i = Math.floor(Math.random() * m--)
-
-                // And swap it with the current element.
-                t = cardArray[m]
-                cardArray[m] = cardArray[i]
-                cardArray[i] = t
-            }
-        }
-
-        createCardArray () {
-            const PAIR = 2
-            const NUMBER_OF_PAIRS = 9
-
-            let cardArray = []
-
-            for (let i = 0; i < NUMBER_OF_PAIRS; i++) {
-                for (let k = 0; k < PAIR; k++) {
-                    const cardContainer = document.createElement('div')
-                    const cardFlipper = document.createElement('div')
-                    const cardFront = document.createElement('div')
-                    const cardBack = document.createElement('div')
-                    const cardImg = document.createElement('img')
-
-                    cardImg.src = 'images/' + i + '.jpeg'
-
-                    cardContainer.classList.add('card')
-                    cardFlipper.classList.add('flipper')
-                    cardFront.classList.add('front')
-                    cardBack.classList.add('back')
-
-                    cardBack.append(cardImg)
-                    cardFlipper.append(cardFront)
-                    cardFlipper.append(cardBack)
-                    cardContainer.append(cardFlipper)
-
-                    cardArray.push(cardContainer)
-                }
-            }
-
-            this.shuffleArray(cardArray)
-
-            return cardArray
-        }
-
-        cardGenerator () {
-            const cardsContainer = document.getElementById('cardWrapper')
-            const cardArray = this.createCardArray()
-
-            for (let i = 0; i < cardArray.length; i++) {
-                cardsContainer.appendChild(cardArray[i])
-            }
-        }
-    }
-
     return {
         init: function (GAME) {
             const wrap = wrapper()
@@ -140,8 +77,6 @@ const Markup = (function () {
             wrap.append(cardContainer)
             wrap.append(container)
             document.body.append(wrap)
-            let cards = new Cards()
-            cards.cardGenerator()
             build(GAME)
         }
     }
