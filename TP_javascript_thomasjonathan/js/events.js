@@ -42,7 +42,9 @@ const Events = (function () {
         pauseBtn.value = 'pause'
         if (pairsMade === MAX_MATCHES) {
             compareTime(completedIn)
-            alert('You completed the game in ' + completedIn + ' seconds.')
+            setTimeout(function () {
+                alert('You completed the game in ' + completedIn + ' seconds.')
+            }, 600)
         }
     }
     function pause (event) {
