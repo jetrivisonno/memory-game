@@ -29,7 +29,7 @@ const Events = (function () {
         timer()
         attachEventListenerArray('card', 'click', flip)
     }
-    function stop (event) {
+    function stop () {
         detachEventListener('gameOn', 'click', stop)
         attachEventListener('gameOn', 'click', start)
         removeEventListenerArray('card', 'click', flip)
