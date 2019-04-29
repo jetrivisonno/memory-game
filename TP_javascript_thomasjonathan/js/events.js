@@ -32,6 +32,7 @@ const Events = (function () {
     function stop (event) {
         detachEventListener('gameOn', 'click', stop)
         attachEventListener('gameOn', 'click', start)
+        removeEventListenerArray('card', 'click', flip)
         gameOn = false
         gameLoop = false
         const startBtn = document.getElementById('gameOn')
