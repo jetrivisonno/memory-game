@@ -42,9 +42,6 @@ const Events = (function () {
         pauseBtn.value = 'pause'
         if (pairsMade === MAX_MATCHES) {
             compareTime(completedIn)
-            setTimeout(function () {
-                alert('You completed the game in ' + completedIn + ' seconds.')
-            }, 600)
         }
     }
     function pause (event) {
@@ -145,7 +142,13 @@ const Events = (function () {
             bestTime = time
             const element = document.getElementById('bestTime')
             element.value = bestTime
-            alert('Your time of ' + bestTime + 'seconds is the new best!')
+            setTimeout(function () {
+                alert('Your time of ' + bestTime + ' seconds is the new best!')
+            }, 600)
+        } else {
+            setTimeout(function () {
+                alert('You completed the game in ' + time + ' seconds.')
+            }, 600)
         }
     }
     function reset () {

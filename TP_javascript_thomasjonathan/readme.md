@@ -1,4 +1,4 @@
-Thomas Caissie, Jonathan Trivisonno
+Project created by: Thomas Caissie, Jonathan Trivisonno
 
 Modules
 -------
